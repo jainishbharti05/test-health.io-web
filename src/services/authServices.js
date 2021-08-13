@@ -7,6 +7,7 @@ export function login(email, password, device_id) {
     .then(handleResponse)
     .then((response) => {
         data = response.data;
+        console.log(data)
       localStorage.setItem("user", JSON.stringify(response.data));
     });
     return data;
