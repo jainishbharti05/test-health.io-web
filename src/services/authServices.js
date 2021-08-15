@@ -1,15 +1,19 @@
 import axios from "../apis/axios";
+// import history from "../history";
 
 export function login(email, password, device_id) {
-    let data = null;
-  axios
+  return axios
     .post("/client/users/login", { email, password, device_id: "Acer-Nitro-5" })
-    .then(handleResponse)
     .then((response) => {
-        data = response.data;
-      localStorage.setItem("user", JSON.stringify(response.data));
+      if (response.status === 200) {
+        if (!response.data.error) {
+          localStorage.setItem("user", JSON.stringify(response.data));
+          return response.data;
+        }
+        const error = { message: response.data.error };
+        return error;
+      }
     });
-    return data;
 }
 
 export function logout() {
@@ -17,24 +21,14 @@ export function logout() {
 }
 
 export function register(user) {
-  axios.post("/client/users/signup", user).then(handleResponse);
-}
-
-export function handleResponse(response) {
-  return response.text().then((text) => {
-    const data = JSON.parse(text);
-    if (!response.ok) {
-      if (response.status === 401) {
-        logout();
+  return axios.post("/client/users/signup", user).then((response) => {
+    if (response.status === 200) {
+      if (!response.data.error) {
+        
+        return response.data;
       }
-
-      const error = response.statusText;
-      return Promise.reject(error);
-    }
-    if (response.error) {
-      const error = response.error;
+      const error = { message: response.data.error };
       return error;
     }
-    return data;
   });
 }

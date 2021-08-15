@@ -35,14 +35,17 @@ class Signup extends Component {
     const {user} = this.state;
     if (user.firstName && user.lastName && user.email && user.password && user.age) {
       this.props.signUp(user);
+      this.props.changeContainer();
   }
   };
 
   render() {
     const { user } = this.state;
+    const { error } = this.props;
     return (
       <form onSubmit={this.handleSubmit} className="sign-up-form">
         <h2 className="title">Sign up</h2>
+        <h4>{error}</h4>
         <div className="input-field">
           <i className="fas fa-user" />
           <input
@@ -107,4 +110,10 @@ class Signup extends Component {
   }
 }
 
-export default connect(null, { signUp })(Signup);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    error: state.userRegistration.message
+  }
+}
+
+export default connect(mapStateToProps, { signUp })(Signup);

@@ -25,13 +25,12 @@ class Welcome extends Component {
 
 
   render() {
-    console.log(this.state)
     return (
       <div className={`container ${this.state.containerClass}`}>
         <div className="forms-container">
           <div className="signin-signup">
             <SignIn />
-            <SignUp />
+            <SignUp changeContainer = { () => { this.setState({ containerClass: "sign-in-mode" }) }} />
           </div>
         </div>
         <div className="panels-container">
