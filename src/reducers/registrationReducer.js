@@ -9,7 +9,7 @@ export default (state={}, action) => {
       case "SIGN_UP_SUCCESS":
         return {
             registered : true,
-            message : "User registered successfully",
+            messsage : action.message,
             user : action.payload
         };
       case "SIGN_UP_FAILURE":

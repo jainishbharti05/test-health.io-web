@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import SignUp from "./Signup";
 import SignIn from "./Signin";
 import "./Welcome.css";
@@ -8,9 +9,8 @@ import Register from "../../images/register.svg";
 class Welcome extends Component {
   state = {
     containerClass: null,
-    url: ""
+    url: "",
   };
- 
 
   handleRegisterClick = (event) => {
     event.preventDefault();
@@ -22,7 +22,9 @@ class Welcome extends Component {
     this.setState({ containerClass: "sign-in-mode" });
   };
 
-
+  // changeContainer() {
+  //   this.setState({ containerClass: "sign-in-mode" });
+  // }
 
   render() {
     return (
@@ -30,7 +32,7 @@ class Welcome extends Component {
         <div className="forms-container">
           <div className="signin-signup">
             <SignIn />
-            <SignUp changeContainer = { () => { this.setState({ containerClass: "sign-in-mode" }) }} />
+            <SignUp  />
           </div>
         </div>
         <div className="panels-container">
