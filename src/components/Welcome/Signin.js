@@ -29,9 +29,11 @@ class Signin extends Component {
 
   render() {
     const { email , password } = this.state;
+    const { error } = this.props;
     return (
       <form onSubmit={this.handleSubmit} className="sign-in-form">
         <h2 className="title">Sign in</h2>
+        <h4>{error}</h4>
         <div className="input-field">
           <i className="fas fa-user" />
           <input
@@ -60,4 +62,10 @@ class Signin extends Component {
   }
 }
 
-export default connect(null, { signIn })(Signin);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    error: state.authentication.message
+  }
+}
+
+export default connect(mapStateToProps, { signIn })(Signin);

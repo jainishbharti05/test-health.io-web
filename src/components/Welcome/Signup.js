@@ -8,11 +8,13 @@ import "./Welcome.css";
 class Signup extends Component {
   state = {
     user: {
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
+      mobile_num: "",
       age: "",
       email: "",
       password: "",
+      known_device:[]
     },
     submitted: false,
   };
@@ -33,23 +35,28 @@ class Signup extends Component {
 
     this.setState({ submitted: true });
     const {user} = this.state;
-    if (user.firstName && user.lastName && user.email && user.password && user.age) {
+    if (user.first_name && user.email && user.password && user.age) {
       this.props.signUp(user);
+      // this.props.changeContainer();
   }
   };
 
   render() {
+    
     const { user } = this.state;
+    const { message } = this.props;
     return (
       <form onSubmit={this.handleSubmit} className="sign-up-form">
         <h2 className="title">Sign up</h2>
+        <h4>{message}</h4>
         <div className="input-field">
           <i className="fas fa-user" />
           <input
             type="text"
-            placeholder="First name"
-            name="firstName"
-            value={user.firstName}
+            placeholder="First Name"
+            name="first_name"
+            required
+            value={user.first_name}
             onChange={this.handleChange}
           />
         </div>
@@ -57,9 +64,9 @@ class Signup extends Component {
           <i className="fas fa-user" />
           <input
             type="text"
-            placeholder="Last name"
-            name="lastName"
-            value={user.lastName}
+            placeholder="Last Name"
+            name="last_name"
+            value={user.last_name}
             onChange={this.handleChange}
           />
         </div>
@@ -71,6 +78,7 @@ class Signup extends Component {
             max="99"
             min="3"
             name="age"
+            required
             value={user.age}
             onChange={this.handleChange}
           />
@@ -107,4 +115,10 @@ class Signup extends Component {
   }
 }
 
-export default connect(null, { signUp })(Signup);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    message: state.userRegistration.message
+  }
+}
+
+export default connect(mapStateToProps, { signUp })(Signup);

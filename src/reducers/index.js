@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-// import urlReducer from './urlReducer';
-import authReducer from './authreducer';
+import authReducer from "./authreducer";
+import registrationReducer from "./registrationReducer";
 
 export default combineReducers({
-    auth : authReducer,
-    // baseURL: urlReducer
-})
+  authentication: authReducer,
+  userRegistration: registrationReducer,
+});
