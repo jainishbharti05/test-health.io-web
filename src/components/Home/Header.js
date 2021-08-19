@@ -9,7 +9,7 @@ import Log from "../../images/log.svg"
 class Header extends Component {
   
   render() {
-    const { email , signOut, active } = this.props;
+    const { user , signOut, active } = this.props;
     return (
       
         <header> 
@@ -26,7 +26,7 @@ class Header extends Component {
           <div className="user-wrapper">
             <img src={Log} alt="" width="40px" height="40px" />
             <div>
-              <h4>{email}</h4>
+              <h4>{user}</h4>
               <small>
                 {" "}
                 <p style={{cursor : "pointer"}} onClick={signOut}>Log Out</p>
@@ -41,7 +41,7 @@ class Header extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    email : (state.authentication.loggedIn === true ? state.authentication.user.email : "User")
+    user : (state.authentication.loggedIn === true ? state.authentication.user.name : "User")
   }
 }
 

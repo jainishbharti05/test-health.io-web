@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import { signIn } from '../../actions';
@@ -56,6 +57,7 @@ class Signin extends Component {
           />
         </div>
         <input type="submit" defaultValue="Login" className="btn solid" />
+        <Link to="/forgot_password" >Forgotten Password?</Link>
         <SocialButtons />
       </form>
     );

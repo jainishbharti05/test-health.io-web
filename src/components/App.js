@@ -11,6 +11,7 @@ import Medicine from "../components/Categories/Medicine";
 import Police from "../components/Categories/Police";
 import { PrivateRoute } from "./Private/PrivateRoute";
 import Welcome from "./Welcome/Welcome";
+import VerifyIdentity from "./Welcome/VerifyIdentity";
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
       <Router history={history}>
         <Switch>
           <Route path="/" exact component={Welcome} />
+          <Route path="/forgot_password" component={VerifyIdentity} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/ambulance" component={Ambulance} />
           <PrivateRoute path="/clinics" component={Clinics} />
